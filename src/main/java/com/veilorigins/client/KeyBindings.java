@@ -88,6 +88,7 @@ public class KeyBindings {
         // Register all key mappings
         event.register(ABILITY_1);
         event.register(ABILITY_2);
+        event.register(ABILITY_3);
         event.register(RESOURCE_INFO);
         event.register(RADIAL_MENU);
         event.register(HUD_CONFIG);

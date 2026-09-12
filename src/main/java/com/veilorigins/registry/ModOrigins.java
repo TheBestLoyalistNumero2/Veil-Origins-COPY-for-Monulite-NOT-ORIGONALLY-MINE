@@ -319,6 +319,7 @@ public class ModOrigins {
                                 .setSpeedModifier(1.0f)
                                 .addAbility(new RedstonePulseAbility())
                                 .addAbility(new OverclockAbility())
+                                .addAbility(new JetpackAbility())
                                 .addPassive(new MachineAffinityPassive())
                                 .addPassive(new CyborgResiliencePassive())
                                 .setResourceType(new ResourceType("power_cells", 100, 0.1f))
