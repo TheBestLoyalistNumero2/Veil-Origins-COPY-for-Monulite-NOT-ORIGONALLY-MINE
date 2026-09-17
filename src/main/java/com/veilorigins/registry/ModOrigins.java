@@ -1,8 +1,10 @@
 package com.veilorigins.registry;
 
 import com.veilorigins.api.*;
-import com.veilorigins.origins.human.BasicBitchPassive;
-import com.veilorigins.origins.human.HeartAttack;
+import com.veilorigins.origins.human.*;
+import com.veilorigins.origins.mogged.*;
+import com.veilorigins.origins.sonic.*;
+import com.veilorigins.origins.telvrnis.*;
 import com.veilorigins.origins.veilborn.*;
 import com.veilorigins.origins.stoneheart.*;
 import com.veilorigins.origins.feralkin.*;
@@ -41,6 +43,9 @@ public class ModOrigins {
                 registerStarborne();
                 registerSkyborn();
                 registerMycomorph();
+                registerMogged();
+                registerSonic();
+                registerITSNOUSE();
                 registerCrystalline();
                 registerTechnomancer();
                 registerEthereal();
@@ -130,7 +135,7 @@ public class ModOrigins {
 
         private static void registerHuman() {
                 Origin human = new OriginBuilder("veil_origins:human")
-                        .setDisplayName("Riftwalker")
+                        .setDisplayName("Human")
                         .setDescription(
                                 "Human.")
                         .setImpactLevel(ImpactLevel.HIGH)
@@ -151,6 +156,7 @@ public class ModOrigins {
                                 .setSpeedModifier(1.0f)
                                 .addAbility(new ShadowMeldAbility())
                                 .addAbility(new DarknessBoltAbility())
+                                .addAbility(new DarkCrawlAbility())
                                 .addPassive(new ShadowFormPassive())
                                 .addPassive(new PhotophobiaPassive())
                                 .setResourceType(new ResourceType("shadow_energy", 100, 0.5f))
@@ -211,7 +217,6 @@ public class ModOrigins {
                                 .addPassive(new ThermalVisionPassive())
                                 .addPassive(new CindersoulWeaknessesPassive())
                                 .setResourceType(new ResourceType("internal_heat", 100, 0.5f)) // Recharges near fire
-                                                                                               // check in handler
                                 .build();
 
                 VeilOriginsAPI.registerOrigin(cindersoul);
@@ -225,13 +230,11 @@ public class ModOrigins {
                                 .setImpactLevel(ImpactLevel.MEDIUM)
                                 .setHealthModifier(1.0f)
                                 .setSpeedModifier(1.0f)
-                                .addAbility(new TidalWaveAbility())
                                 .addAbility(new AquaBubbleAbility())
                                 .addPassive(new OceansGiftPassive())
                                 .addPassive(new HydrationDependencyPassive())
                                 .addPassive(new TidecallerWeaknessesPassive())
                                 .setResourceType(new ResourceType("hydration", 100, 0.0f)) // Manually managed in
-                                                                                           // EventHandler
                                 .build();
 
                 VeilOriginsAPI.registerOrigin(tidecaller);
@@ -265,6 +268,7 @@ public class ModOrigins {
                                 .setSpeedModifier(1.0f)
                                 .addAbility(new WindBlastAbility())
                                 .addAbility(new UpdraftAbility())
+                                .addAbility(new GroundSlamAbility())
                                 .addPassive(new CloudStriderPassive())
                                 .addPassive(new AltitudeAffinityPassive())
                                 .addPassive(new SkybornWeaknessesPassive())
@@ -284,6 +288,7 @@ public class ModOrigins {
                                 .setSpeedModifier(1.0f)
                                 .addAbility(new SporeCloudAbility())
                                 .addAbility(new FungalNetworkAbility())
+                                .addAbility(new tpToMushroomAbility())
                                 .addPassive(new DecomposerPassive())
                                 .addPassive(new PhotosynthesisPassive())
                                 .addPassive(new MycomorphWeaknessesPassive())
@@ -291,6 +296,59 @@ public class ModOrigins {
                                 .build();
 
                 VeilOriginsAPI.registerOrigin(mycomorph);
+        }
+
+        private static void registerMogged() {
+                Origin mogged = new OriginBuilder("veil_origins:mogged")
+                        .setDisplayName("Mogged")
+                        .setDescription(
+                                "You have been Mogged. Part mushroom, part undead. You spread fungal growth wherever you go and can communicate with mushroom colonies.")
+                        .setImpactLevel(ImpactLevel.MEDIUM)
+                        .setHealthModifier(1.0f)
+                        .setSpeedModifier(1.0f)
+                        .addAbility(new SporeCloudAbility())
+                        .addAbility(new FungalNetworkAbility())
+                        .addAbility(new tpToMushroomAbility())
+                        .addPassive(new DecomposerPassive())
+                        .addPassive(new PhotosynthesisPassive())
+                        .addPassive(new MycomorphWeaknessesPassive())
+                        .setResourceType(new ResourceType("spore_count", 100, 0.2f))
+                        .build();
+
+                VeilOriginsAPI.registerOrigin(mogged);
+        }
+
+        private static void registerITSNOUSE() {
+                Origin telvrnis = new OriginBuilder("veil_origins:telvrnis")
+                        .setDisplayName("Telvrnis")
+                        .setDescription(
+                                "ITS NO USE!")
+                        .addAbility(new LevitatingFoeAbility())
+                        .addAbility(new LevitateSelfAbility())
+                        .addPassive(new FocusIsKeyPassive())
+                        .setImpactLevel(ImpactLevel.MEDIUM)
+                        .setHealthModifier(1.0f)
+                        .setSpeedModifier(1.0f)
+                        .setResourceType(new ResourceType("telepathy", 100, 0.2f))
+                        .build();
+
+                VeilOriginsAPI.registerOrigin(telvrnis);
+        }
+
+        private static void registerSonic() {
+                Origin sonic = new OriginBuilder("veil_origins:sonic")
+                        .setDisplayName("Sonic")
+                        .setDescription(
+                                "'It is a admin origin. dont choose it, you will regret it. seriously. dont. I wont even do anything, it would be funny to me' -loyalist")
+                        .setImpactLevel(ImpactLevel.MEDIUM)
+                        .addAbility(new HomingBoltAbility())
+                        .addAbility(new SpinDashAbility())
+                        .addPassive(new SpeedPassive())
+                        .setHealthModifier(1.0f)
+                        .setSpeedModifier(1.0f)
+                        .build();
+
+                VeilOriginsAPI.registerOrigin(sonic);
         }
 
         private static void registerCrystalline() {

@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.ChatFormatting;
 
 public class WolfFormAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 8;
+    private static final int RESOURCE_COST = 100;
     private static final int DURATION = 20 * 20;
     private int activeDuration = 0;
     private boolean isActive = false;

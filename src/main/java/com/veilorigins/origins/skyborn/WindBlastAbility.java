@@ -79,6 +79,6 @@ public class WindBlastAbility extends OriginAbility {
 
     @Override
     public int getResourceCost() {
-        return 0; // Handled
+        return 45; // Handled
     }
 }

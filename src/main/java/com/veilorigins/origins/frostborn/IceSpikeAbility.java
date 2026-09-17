@@ -17,7 +17,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class IceSpikeAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 2;
+    private static final int RESOURCE_COST = 25;
 
     public IceSpikeAbility() {
         super("ice_spike", 8);

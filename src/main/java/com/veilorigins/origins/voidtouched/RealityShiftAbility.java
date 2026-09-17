@@ -22,7 +22,7 @@ import java.util.List;
 import net.minecraft.ChatFormatting;
 
 public class RealityShiftAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 6;
+    private static final int RESOURCE_COST = 15;
     private static final int RANGE = 20;
 
     public RealityShiftAbility() {

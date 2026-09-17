@@ -17,7 +17,7 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class EntanglingRootsAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 5;
+    private static final int RESOURCE_COST = 10;
     private static final double RADIUS = 8.0;
     private static final float DAMAGE = 4.0f;
 

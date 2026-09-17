@@ -69,6 +69,6 @@ public class OverclockAbility extends OriginAbility {
 
     @Override
     public int getResourceCost() {
-        return 0;
+        return 30;
     }
 }

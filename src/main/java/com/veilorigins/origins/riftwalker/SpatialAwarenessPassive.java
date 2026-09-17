@@ -5,11 +5,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-
-import java.util.List;
+import net.minecraft.world.scores.Team;
 
 public class SpatialAwarenessPassive extends OriginPassive {
     private int tickCounter = 0;
@@ -18,42 +19,55 @@ public class SpatialAwarenessPassive extends OriginPassive {
         super("spatial_awareness");
     }
 
-    @Override
     public void onTick(Player player) {
-        tickCounter++;
-        
-        // No fall damage - cancel fall damage
-        if (player.fallDistance > 3.0f) {
-            player.fallDistance = 0;
+        ++this.tickCounter;
+        if (player.fallDistance > 3.0F) {
+            player.fallDistance = 0.0F;
         }
-        
-        // Every 20 ticks (1 second), apply glowing to nearby entities
-        if (tickCounter >= 20) {
-            tickCounter = 0;
-            
+
+        if (this.tickCounter >= 102) {
             Level level = player.level();
-            AABB area = new AABB(
-                player.getX() - 32, player.getY() - 32, player.getZ() - 32,
-                player.getX() + 32, player.getY() + 32, player.getZ() + 32
-            );
-            
-            // Make all entities glow (minimap effect simulation)
-            List<Entity> entities = level.getEntities(player, area);
-            for (Entity entity : entities) {
-                if (entity instanceof LivingEntity living && !entity.isSpectator()) {
-                    living.addEffect(new MobEffectInstance(MobEffects.GLOWING, 30, 0, false, false));
+            AABB area = new AABB(player.getX() - (double)100.0F, player.getY() - (double)100.0F, player.getZ() - (double)100.0F, player.getX() + (double)100.0F, player.getY() + (double)100.0F, player.getZ() + (double)100.0F);
+
+            for(Entity entity : level.getEntities(player, area)) {
+                if (entity instanceof LivingEntity) {
+                    LivingEntity living = (LivingEntity)entity;
+                    if (!entity.isSpectator() && !(entity instanceof ArmorStand)) {
+                        Team team = entity.getTeam();
+                        if (team != null && team.getName().equals("ender")) {
+                            player.getServer().getCommands().performPrefixedCommand(player.getServer().createCommandSourceStack().withSuppressedOutput(), "team leave " + entity.getStringUUID());
+                        }
+                    }
                 }
             }
         }
+
+        if (this.tickCounter >= 1240) {
+            this.tickCounter = 0;
+            Level level = player.level();
+            AABB area = new AABB(player.getX() - (double)14.0F, player.getY() - (double)14.0F, player.getZ() - (double)14.0F, player.getX() + (double)14.0F, player.getY() + (double)14.0F, player.getZ() + (double)14.0F);
+
+            for(Entity entity : level.getEntities(player, area)) {
+                if (entity instanceof LivingEntity) {
+                    LivingEntity living = (LivingEntity)entity;
+                    if (!entity.isSpectator() && !(entity instanceof ArmorStand)) {
+                        living.addEffect(new MobEffectInstance(MobEffects.GLOWING, 100, 0, false, false));
+                    }
+                }
+
+                player.getServer().getCommands().performPrefixedCommand(player.getServer().createCommandSourceStack().withSuppressedOutput(), "team join ender " + entity.getStringUUID());
+                if (entity instanceof ItemEntity) {
+                    ItemEntity itemEntity = (ItemEntity)entity;
+                    itemEntity.setGlowingTag(true);
+                }
+            }
+        }
+
     }
 
-    @Override
     public void onEquip(Player player) {
-        // Called when player selects Riftwalker origin
     }
 
-    @Override
     public void onRemove(Player player) {
-        // Called when player changes from Riftwalker origin
     }
 }

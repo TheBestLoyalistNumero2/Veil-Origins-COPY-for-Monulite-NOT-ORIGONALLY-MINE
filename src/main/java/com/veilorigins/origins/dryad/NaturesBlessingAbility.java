@@ -21,7 +21,7 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class NaturesBlessingAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 8;
+    private static final int RESOURCE_COST = 25;
     private static final double RADIUS = 10.0;
     private static final float HEAL_AMOUNT = 6.0f; // 3 hearts
 

@@ -8,28 +8,43 @@ import com.veilorigins.data.OriginData;
 import com.veilorigins.network.ModPackets;
 import com.veilorigins.network.packet.SyncCooldownsPacket;
 import com.veilorigins.network.packet.SyncOriginDataPacket;
+import com.veilorigins.origins.telvrnis.LevitatingFoeAbility;
 import com.veilorigins.origins.vampire.VampiricDoubleJumpPassive;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.veilorigins.origins.telvrnis.LevitatingFoeAbility.levitatingDat;
 
 @SuppressWarnings("deprecation")
 @EventBusSubscriber(modid = VeilOrigins.MOD_ID)
 public class OriginEventHandler {
     private static final ResourceLocation FALLDM_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath("veil_origins", "falldm_speed_reduction");
     /*  50 */   private static final ResourceLocation SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath("veil_origins", "speed_mod_doduction");
+
 
     /**
      * Load player's origin from persistent data when they log in
@@ -81,11 +96,12 @@ public class OriginEventHandler {
         Origin origin = VeilOriginsAPI.getPlayerOrigin(player);
         if (origin == null) {
             falldm.removeModifier(FALLDM_MODIFIER_ID);
+            speedfst.removeModifier(SPEED_MODIFIER_ID);
             falldm.setBaseValue(1.0D); return;
         }
         String currentOrigin = origin.getId().getPath();
-        if (currentOrigin.equals("sonic"))
-        { falldm.removeModifier(FALLDM_MODIFIER_ID);
+        if (currentOrigin.equals("sonic")) {
+            falldm.removeModifier(FALLDM_MODIFIER_ID);
             falldm.setBaseValue(0.0D);
             speedfst.removeModifier(SPEED_MODIFIER_ID);
             speedfst.setBaseValue(0.2000000014D);
@@ -556,6 +572,7 @@ public class OriginEventHandler {
         }
     }
 
+
     @SubscribeEvent
     public static void onPlayerDamageVoid(net.neoforged.neoforge.event.entity.living.LivingDamageEvent.Pre event) {
         if (!(event.getEntity() instanceof Player player))
@@ -611,6 +628,14 @@ public class OriginEventHandler {
             if (event.getSource().getDirectEntity() == player) {
                 event.setNewDamage(event.getOriginalDamage() + 2.0f);
                 event.getEntity().setRemainingFireTicks(60); // Set target on fire for 3s
+            }
+        }
+
+        if (origin.getId().getPath().equals("mogged")) {
+            DamageSource source = event.getSource();
+            if (source.is(DamageTypes.ARROW)) {
+                LivingEntity targer = event.getEntity();
+                targer.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 0, false, true));
             }
         }
 

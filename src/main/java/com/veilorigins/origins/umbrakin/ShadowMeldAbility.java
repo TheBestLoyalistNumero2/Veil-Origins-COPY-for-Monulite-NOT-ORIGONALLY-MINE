@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.ChatFormatting;
 
 public class ShadowMeldAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 4;
+    private static final int RESOURCE_COST = 15;
     private static final int DURATION = 10 * 20; // 10 seconds
     private int activeDuration = 0;
     private boolean isActive = false;

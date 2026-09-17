@@ -107,6 +107,6 @@ public class JetpackAbility extends OriginAbility {
     }
 
     public int getResourceCost() {
-        return 0;
+        return 55;
     }
 }

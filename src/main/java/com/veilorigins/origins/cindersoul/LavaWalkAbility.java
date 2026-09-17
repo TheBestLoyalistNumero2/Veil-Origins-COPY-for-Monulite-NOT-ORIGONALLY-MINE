@@ -216,6 +216,6 @@ public class LavaWalkAbility extends OriginAbility {
 
     @Override
     public int getResourceCost() {
-        return 0;
+        return 55;
     }
 }

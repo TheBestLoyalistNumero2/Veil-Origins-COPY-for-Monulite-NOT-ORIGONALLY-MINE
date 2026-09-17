@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 public class LifeSiphonAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 6;
+    private static final int RESOURCE_COST = 5;
     private static final double RANGE = 12.0;
     private static final float DAMAGE = 4.0f;
     private static final float HEAL_RATIO = 0.5f; // Heal 50% of damage dealt

@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class VeilStepAbility extends OriginAbility {
     private static final int TELEPORT_RANGE = 20;
-    private static final int RESOURCE_COST = 3;
+    private static final int RESOURCE_COST = 15;
 
     public VeilStepAbility() {
         super("veil_step", 30);

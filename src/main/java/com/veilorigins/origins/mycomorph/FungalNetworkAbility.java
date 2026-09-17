@@ -16,21 +16,7 @@ public class FungalNetworkAbility extends OriginAbility {
     private static final int MAX_NODES = 5;
 
     // Per player -> List of tagged mushroom positions
-    private final Map<UUID, List<BlockPos>> networkNodes = new HashMap<>();
-
-    // Per player -> Is currently viewing through mushroom? (We can't easily
-    // implement "Camera" view without client side mods)
-    // Spec says "See through mushrooms".
-    // Implementing Camera switching is client-side heavy (GameOptions.setCameraType
-    // etc).
-    // Alternative: Just teleport player there temporarily like Ender Pearl stasis
-    // chamber or show glowing outlines?
-    // "Telepathically communicate with players near mushrooms" -> Chat message
-    // broadcast?
-
-    // Simplified Implementation:
-    // "Ping" network: Show chat info about players near nodes.
-    // "Tag" function: If looking at mushroom, add to nodes.
+    public static final Map<UUID, List<BlockPos>> networkNodes = new HashMap<>();
 
     public FungalNetworkAbility() {
         super("fungal_network", COOLDOWN);
@@ -40,11 +26,6 @@ public class FungalNetworkAbility extends OriginAbility {
     public void onActivate(Player player, Level level) {
         if (level.isClientSide())
             return;
-
-        // Mode 1: Tag Node (Check what player is looking at)
-        // If sneaking while looking at tagged node -> Remove it
-        // If looking at mushroom -> Tag it
-        // If not looking at mushroom -> Ping Network
 
         BlockPos lookedPos = getLookedBlock(player, 5.0);
         boolean isMushroom = false;
@@ -163,6 +144,6 @@ public class FungalNetworkAbility extends OriginAbility {
 
     @Override
     public int getResourceCost() {
-        return 0;
+        return 5;
     }
 }

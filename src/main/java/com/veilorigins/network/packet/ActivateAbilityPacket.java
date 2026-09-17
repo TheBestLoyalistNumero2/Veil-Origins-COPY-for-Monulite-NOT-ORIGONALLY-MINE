@@ -39,7 +39,7 @@ public record ActivateAbilityPacket(int abilityIndex) implements CustomPacketPay
                     if (ability.canUse(serverPlayer)) {
                         // Check if vampire/vampling and consume blood for ability cost
                         String originPath = origin.getId().getPath();
-                        if (originPath.equals("vampire") || originPath.equals("vampling")) {
+                        if (originPath != null) {
                             int bloodCost = ability.getResourceCost();
                             if (bloodCost > 0) {
                                 com.veilorigins.data.OriginData.PlayerOriginData data = 
@@ -49,7 +49,7 @@ public record ActivateAbilityPacket(int abilityIndex) implements CustomPacketPay
                                 if (data.getResourceBar() < bloodCost) {
                                     serverPlayer.displayClientMessage(
                                         net.minecraft.network.chat.Component.literal(
-                                            net.minecraft.ChatFormatting.RED + "Not enough blood! Need " + bloodCost + " blood."),
+                                            net.minecraft.ChatFormatting.RED + "Not enough energy! Need " + bloodCost + " energy."),
                                         true);
                                     return;
                                 }

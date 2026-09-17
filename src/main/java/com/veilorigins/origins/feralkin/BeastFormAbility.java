@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 
 public class BeastFormAbility extends OriginAbility {
     private static final int DURATION = 60 * 20; // 60 seconds
-    private static final int RESOURCE_COST = 8;
+    private static final int RESOURCE_COST = 15;
 
     public BeastFormAbility() {
         super("beast_form", 120);

@@ -8,6 +8,7 @@ import com.veilorigins.VeilOrigins;
 import com.veilorigins.api.Origin;
 import com.veilorigins.api.VeilOriginsAPI;
 import com.veilorigins.data.OriginData;
+import com.veilorigins.event.OriginEventHandler;
 import com.veilorigins.network.ModPackets;
 import com.veilorigins.network.packet.SyncOriginDataPacket;
 import com.veilorigins.progression.HybridSystem;
@@ -80,14 +81,15 @@ public class OriginCommand {
             Origin origin = VeilOriginsAPI.getOrigin("veil_origins:" + originId);
 
             if (origin == null) {
+                OriginEventHandler.skybornFalldm(player);
                 context.getSource().sendFailure(Component.literal("Unknown origin: " + originId));
                 return 0;
             }
 
             VeilOriginsAPI.setPlayerOrigin(player, origin);
-
             // Sync the new origin to the client - critical for multiplayer!
             syncOriginToClient(player, origin);
+            OriginEventHandler.skybornFalldm(player);
 
             context.getSource().sendSuccess(
                     () -> Component
@@ -106,6 +108,7 @@ public class OriginCommand {
             ServerPlayer player = EntityArgument.getPlayer(context, "player");
 
             VeilOriginsAPI.setPlayerOrigin(player, null);
+            OriginEventHandler.skybornFalldm(player);
 
             // Sync the cleared origin to the client - critical for multiplayer!
             OriginData.PlayerOriginData data = player.getData(OriginData.PLAYER_ORIGIN);

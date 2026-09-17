@@ -31,7 +31,7 @@ import net.minecraft.ChatFormatting;
  */
 public class PossessionAbility extends OriginAbility {
     private static final int COOLDOWN = 60 * 20; // 60 seconds
-    private static final int HUNGER_COST = 8;
+    private static final int HUNGER_COST = 10;
     private static final int POSSESSION_DURATION = 30 * 20; // 30 seconds
 
     // Track possession state per player (server-side)

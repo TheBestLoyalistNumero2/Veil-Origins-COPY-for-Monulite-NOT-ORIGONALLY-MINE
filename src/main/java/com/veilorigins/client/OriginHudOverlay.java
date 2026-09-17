@@ -320,6 +320,7 @@ public class OriginHudOverlay implements LayeredDraw.Layer {
             case "voidtouched" -> 0xFF6C3483;
             case "skyborn" -> 0xFFECF0F1;
             case "mycomorph" -> 0xFF58D68D;
+            case "mogged" -> 0xFF58D68D;
             case "crystalline" -> 0xFFAED6F1;
             case "technomancer" -> 0xFFE74C3C;
             case "ethereal" -> 0xFFBDC3C7;
@@ -329,6 +330,7 @@ public class OriginHudOverlay implements LayeredDraw.Layer {
             case "werepup" -> 0xFFCD853F;
             case "dryad" -> 0xFF228B22;
             case "necromancer" -> 0xFF4B0082;
+            case "telvrnis" -> COLOR_CYAN;
             default -> 0xFFFFFFFF;
         };
     }

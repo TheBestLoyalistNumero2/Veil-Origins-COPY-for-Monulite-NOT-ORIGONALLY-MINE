@@ -20,7 +20,7 @@ public class SkybornWeaknessesPassive extends OriginPassive {
             double y = player.getY();
 
             // Slowness underground < 40
-            if (y < 40) {
+            if (y < 12) {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0, false, false));
                 // Mining Fatigure in caves (implied by "in caves", approximated by y < 40 and
                 // low light?)
@@ -30,24 +30,7 @@ public class SkybornWeaknessesPassive extends OriginPassive {
                     player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 40, 0, false, false));
                 }
             }
-
-            // Claustrophobia (Enclosed spaces)
-            // Check if blocks around head are solid?
-            if (isEnclosed(player)) {
-                player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 0, false, false)); // Nausea
-            }
         }
-    }
-
-    private boolean isEnclosed(Player player) {
-        // Simple check: Block above head and around are solid?
-        // "Enclosed spaces"
-        // Let's check 2 block radius for walls on at least 3 sides + ceiling?
-        // Too expensive to run every second?
-        // Simple check: Is block directly above 2 blocks up solid?
-        return !player.level().canSeeSky(player.blockPosition()) && player.getY() < 60; // Simple "Deep
-                                                                                        // underground/inside"
-                                                                                        // approximation
     }
 
     @Override

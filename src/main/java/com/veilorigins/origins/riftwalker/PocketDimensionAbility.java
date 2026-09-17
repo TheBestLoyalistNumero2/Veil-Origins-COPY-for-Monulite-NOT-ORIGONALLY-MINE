@@ -21,7 +21,7 @@ import net.minecraft.ChatFormatting;
 import java.util.Set;
 
 public class PocketDimensionAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 10;
+    private static final int RESOURCE_COST = 50;
     private static final int MAX_DURATION = 60 * 20; // 60 seconds in ticks
     private int dimensionTimer = 0;
     private BlockPos returnPos = null;

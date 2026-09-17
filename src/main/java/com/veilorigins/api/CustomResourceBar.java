@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
  * Supports both sprite-based rendering (like vanilla hearts) and solid color bars.
  */
 public class CustomResourceBar {
-    
+
     /**
      * The rendering style for the resource bar.
      */
@@ -253,7 +253,6 @@ public class CustomResourceBar {
                 .barSize(81, 5)
                 .offset(0, -12);
     }
-    
     /**
      * Creates a heat/fire bar configuration.
      */

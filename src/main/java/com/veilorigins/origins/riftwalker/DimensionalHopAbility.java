@@ -16,10 +16,10 @@ import net.minecraft.world.phys.Vec3;
 
 public class DimensionalHopAbility extends OriginAbility {
     private static final int TELEPORT_RANGE = 240;
-    private static final int RESOURCE_COST = 3;
+    private static final int RESOURCE_COST = 5;
 
     public DimensionalHopAbility() {
-        super("dimensional_hop", 20);
+        super("dimensional_hop", 5);
     }
 
     @Override
@@ -107,7 +107,5 @@ public class DimensionalHopAbility extends OriginAbility {
     }
 
     @Override
-    public int getResourceCost() {
-        return RESOURCE_COST;
-    }
+    public int getResourceCost() {return RESOURCE_COST;}
 }

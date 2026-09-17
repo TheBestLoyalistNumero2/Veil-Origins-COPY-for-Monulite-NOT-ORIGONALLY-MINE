@@ -18,7 +18,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.ChatFormatting;
 
 public class DarknessBoltAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 1;
+    private static final int RESOURCE_COST = 5;
 
     public DarknessBoltAbility() {
         super("darkness_bolt", 5);

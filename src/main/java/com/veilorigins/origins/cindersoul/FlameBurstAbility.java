@@ -28,7 +28,7 @@ import net.minecraft.ChatFormatting;
 public class FlameBurstAbility extends OriginAbility {
     private static final int RADIUS = 8;
     private static final int DAMAGE = 4;
-    private static final int HUNGER_COST = 4;
+    private static final int HUNGER_COST = 15;
 
     public FlameBurstAbility() {
         super("flame_burst", 15);

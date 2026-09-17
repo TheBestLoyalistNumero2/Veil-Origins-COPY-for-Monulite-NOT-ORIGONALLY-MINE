@@ -213,7 +213,7 @@ public class CustomBarRenderer {
         if (bar.shouldShowNumericValue()) {
             String valueText = String.format("%.0f", currentValue);
             int textX = x + width + 4;
-            graphics.drawString(font, bar.getName() + ": " + valueText, textX, y, fillColor, true);
+            graphics.drawString(font, bar.getName() + valueText, textX, y, fillColor, true);
         }
     }
     
@@ -266,7 +266,7 @@ public class CustomBarRenderer {
         if (bar.shouldShowNumericValue()) {
             String valueText = String.format("%.0f", currentValue);
             int textX = x + width + 4;
-            graphics.drawString(font, bar.getName() + ": " + valueText, textX, y, fillColor, true);
+            graphics.drawString(font, bar.getName() + valueText, textX, y, fillColor, true);
         }
     }
     

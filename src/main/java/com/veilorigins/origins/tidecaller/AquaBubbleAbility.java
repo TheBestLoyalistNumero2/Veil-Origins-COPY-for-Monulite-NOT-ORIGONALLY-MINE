@@ -31,7 +31,7 @@ import net.minecraft.ChatFormatting;
  * - On land: Fires a water ball projectile that damages enemies
  */
 public class AquaBubbleAbility extends OriginAbility {
-    private static final int COOLDOWN = 10 * 20; // 10 seconds
+    private static final int COOLDOWN = 5 * 20; // 5 seconds
     private static final int AIR_BUBBLE_DURATION = 60 * 20; // 60 seconds of water breathing
     private static final int BUBBLE_RADIUS = 8; // 8 block radius for sharing water breathing
     private static final float WATER_BALL_DAMAGE = 6.0f;
@@ -303,6 +303,6 @@ public class AquaBubbleAbility extends OriginAbility {
 
     @Override
     public int getResourceCost() {
-        return 0;
+        return 1;
     }
 }

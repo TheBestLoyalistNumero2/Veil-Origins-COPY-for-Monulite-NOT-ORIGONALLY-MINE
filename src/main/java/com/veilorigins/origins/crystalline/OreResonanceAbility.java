@@ -32,7 +32,7 @@ import net.minecraft.ChatFormatting;
  */
 public class OreResonanceAbility extends OriginAbility {
     private static final int COOLDOWN = 15 * 20; // 15 seconds (reduced from 60)
-    private static final int HUNGER_COST = 3;
+    private static final int HUNGER_COST = 30;
     private static final int RADIUS = 20;
     private static final int GLOW_DURATION = 5 * 20; // 5 seconds of glowing
 

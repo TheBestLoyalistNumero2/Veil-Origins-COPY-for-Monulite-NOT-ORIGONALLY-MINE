@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 public class HowlAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 3;
+    private static final int RESOURCE_COST = 5;
     private static final int RADIUS = 15;
 
     public HowlAbility() {

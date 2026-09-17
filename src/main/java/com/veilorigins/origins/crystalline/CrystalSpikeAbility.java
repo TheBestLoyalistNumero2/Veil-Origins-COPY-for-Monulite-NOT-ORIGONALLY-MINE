@@ -13,14 +13,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ShulkerBullet;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import net.minecraft.ChatFormatting;
 
 /**
@@ -29,7 +28,7 @@ import net.minecraft.ChatFormatting;
  */
 public class CrystalSpikeAbility extends OriginAbility {
     private static final int COOLDOWN = 5 * 20; // 5 seconds (reduced from 12)
-    private static final int HUNGER_COST = 2;
+    private static final int HUNGER_COST = 5;
     private static final float DAMAGE = 6.0f;
     private static final int SPIKE_DURATION = 8 * 20; // 8 seconds
 
@@ -38,6 +37,19 @@ public class CrystalSpikeAbility extends OriginAbility {
     public CrystalSpikeAbility() {
         super("crystal_spike", COOLDOWN);
     }
+
+
+    private static final Set<Block> INVALID_TAKE_BRO = Set.of(
+            Blocks.POINTED_DRIPSTONE,
+            Blocks.BUDDING_AMETHYST,
+            Blocks.SMALL_AMETHYST_BUD,
+            Blocks.MEDIUM_AMETHYST_BUD,
+            Blocks.LARGE_AMETHYST_BUD,
+            Blocks.AMETHYST_CLUSTER,
+            Blocks.SNOW,
+            Blocks.SHORT_GRASS,
+            Blocks.TALL_GRASS
+    );
 
     @Override
     public void onActivate(Player player, Level level) {
@@ -62,7 +74,7 @@ public class CrystalSpikeAbility extends OriginAbility {
             spikePos = spikePos.above(); // Place spike on top of ground
 
             // Place spike if valid
-            if (level.isEmptyBlock(spikePos) && !level.isEmptyBlock(spikePos.below())) {
+            if (level.isEmptyBlock(spikePos) && !INVALID_TAKE_BRO.contains(level.getBlockState(spikePos.below()).getBlock())) {
                 // Alternate between amethyst cluster and pointed dripstone for variety
                 if (i % 2 == 0) {
                     level.setBlockAndUpdate(spikePos, Blocks.AMETHYST_CLUSTER.defaultBlockState());

@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 public class PackHowlAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 2;
+    private static final int RESOURCE_COST = 50;
     private static final int RADIUS = 10;
 
     public PackHowlAbility() {

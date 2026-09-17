@@ -151,6 +151,6 @@ public class SporeCloudAbility extends OriginAbility {
 
     @Override
     public int getResourceCost() {
-        return 0;
+        return 10;
     }
 }

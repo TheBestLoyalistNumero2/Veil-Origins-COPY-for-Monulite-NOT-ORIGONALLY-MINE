@@ -90,6 +90,6 @@ public class UpdraftAbility extends OriginAbility {
 
     @Override
     public int getResourceCost() {
-        return 0; // Handled
+        return 5; // Handled
     }
 }

@@ -7,7 +7,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Stray;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.ChatFormatting;
 
 public class RaiseDeadAbility extends OriginAbility {
-    private static final int RESOURCE_COST = 10;
+    private static final int RESOURCE_COST = 25;
     private static final int MAX_SUMMONS = 4;
 
     public RaiseDeadAbility() {
@@ -52,7 +54,7 @@ public class RaiseDeadAbility extends OriginAbility {
 
             // Alternate between zombie and skeleton
             if (i % 2 == 0) {
-                Zombie zombie = EntityType.ZOMBIE.create(serverLevel);
+                Husk zombie = EntityType.HUSK.create(serverLevel);
                 if (zombie != null) {
                     // Make the zombie serve the necromancer
                     zombie.setPos(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5);
@@ -78,7 +80,7 @@ public class RaiseDeadAbility extends OriginAbility {
                     spawnSummonParticles(serverLevel, spawnPos);
                 }
             } else {
-                Skeleton skeleton = EntityType.SKELETON.create(serverLevel);
+                Stray skeleton = EntityType.STRAY.create(serverLevel);
                 if (skeleton != null) {
                     skeleton.setPos(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5);
                     skeleton.setPersistenceRequired();

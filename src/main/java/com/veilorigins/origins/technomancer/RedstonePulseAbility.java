@@ -98,6 +98,6 @@ public class RedstonePulseAbility extends OriginAbility {
     }
 
     public int getResourceCost() {
-        return 0;
+        return 100;
     }
 }

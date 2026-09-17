@@ -28,11 +28,11 @@ public class UndeadMasteryPassive extends OriginPassive {
         BlockPos playerPos = player.blockPosition();
 
         // Every 5 ticks (more frequent to catch AI retargeting)
-        if (tickCounter >= 5) {
+        if (tickCounter >= 2) {
             tickCounter = 0;
 
             // Find undead mobs in radius
-            AABB searchArea = new AABB(playerPos).inflate(16);
+            AABB searchArea = new AABB(playerPos).inflate(20);
 
             // Find zombies
             List<Zombie> zombies = level.getEntitiesOfClass(Zombie.class, searchArea);

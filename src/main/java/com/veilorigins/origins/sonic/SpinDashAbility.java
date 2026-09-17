@@ -103,9 +103,3 @@
 /* 103 */     return 0;
 /*     */   }
 /*     */ }
-
-
-/* Location:              C:\Users\LoyDaBoy\Downloads\veil_origins_mod-MONULITE 1.1.1.jar!\com\veilorigins\origins\sonic\SpinDashAbility.class
- * Java compiler version: 21 (65.0)
- * JD-Core Version:       1.1.3
- */
